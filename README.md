@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+## 클래스형 컴포넌트의 라이프 사이클
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. 마운트(컴포넌트가 화면에 보이기 까지)
 
-## Available Scripts
+- DOM이 생성되고 웹 브라우저상에 나타나는 것을 마운트 라고함
+- 컴포넌트 만들기 -> constuctor -> getDerivedStateFromProps -> render -> componentDidMount 순으로 진행
 
-In the project directory, you can run:
+- constuctor 컴포넌트를 새로 만들때마다 호출됨
+- getDerivedStateFromProps props에 있는 값을 state 값으로 넣을때 사용함
+- render UI를 렌더링 하는 메서드
+- componentDidMount 컴포넌트가 웹 브라우저에상에 나타난후 호출되는 메서드
 
-### `yarn start`
+2. 업데이트(컴포넌트가 업데이트 될때 나타남)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- props가 바뀔때
+- state가 바뀔때
+- 부모 컴포넌트가 리렌더링 될때
+- this.forceUpdate로 강제로 업데이트가 될때
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- getDerivedStateFromProps -> shouldComponentUpdate ->(true시 render 진행, false 시 작업 취소) -> render -> componentDidUpdate 순으로 진행
 
-### `yarn test`
+- getDerivedStateFromProps props에 있는 값을 state 값으로 넣을때 사용함
+- shouldComponentUpdate 는 컴포넌트 리랜더링을 결정함 (true시 render 진행, false 시 작업 취소)
+- render UI를 렌더링 하는 메서드
+- componentDidMount 컴포넌트가 업데이트 이후 호출되는 메서드
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. 언마운트(컴포넌트가 Dom에서 제거될때 나타남)
 
-### `yarn build`
+- 언마운트 하기 -> componentWillUnmount 순으로 진행
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- componentWillUnmount 컴포넌트가 웹 브라우저 상에 사라지기 전에 호출하는 메서드 입니다.
